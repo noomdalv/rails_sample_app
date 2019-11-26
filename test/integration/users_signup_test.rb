@@ -13,7 +13,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/new'
     assert_select 'div#error_explanation'
     assert_select 'div.alert-danger'
-    assert_select 'form[action="/signup"]'
   end
   
   test "valid signup information" do
@@ -26,6 +25,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
-    assert_not flash.empty?
+    assert is_logged_in?
   end
 end
